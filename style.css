@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.playDiv {
+    display: flex;
+    flex-direction: row;
+}
+.player, .pc {
+    display: flex;
+    padding: 20px;
+}
