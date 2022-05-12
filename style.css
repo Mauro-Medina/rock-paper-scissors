@@ -9,11 +9,22 @@ div {
     flex-direction: column;
     align-items: center;
 }
-.playDiv {
+.points {
     display: flex;
     flex-direction: row;
 }
 .player, .pc {
     display: flex;
     padding: 20px;
+}
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.results {
+    padding: 15px;
+}
+.playerScore, .pcScore {
+    font-size: 50px;
 }

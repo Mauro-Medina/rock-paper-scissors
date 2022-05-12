@@ -1,74 +1,70 @@
 
 let playerScore = 0
 let pcScore = 0
-let gameOn = false
 const playerS = document.querySelector(".playerScore")
 const pcS = document.querySelector(".pcScore")
-const startBtn = document.querySelector("button")
-startBtn.addEventListener("click", game)
-
+const rock = document.querySelector('.rock')
+const paper = document.querySelector('.paper')
+const scissors = document.querySelector('.scissors')
+const results = document.querySelector('.results')
+const restart = document.querySelector('.restart')
+rock.addEventListener('click', function () {
+    game("rock")
+})
+paper.addEventListener('click', function () {
+    game("paper")
+})
+scissors.addEventListener('click', function () {
+    game("scissors")
+})
+restart.addEventListener('click', function () {
+    playerScore = 0
+    pcScore = 0
+    playerS.textContent = playerScore
+    pcS.textContent = pcScore
+    results.textContent = ""
+})
 const hands = ["rock", "paper", "scissors"]
 function computerPlay() {
     return hands[~~(Math.random()*hands.length)]
 }
 function playRound(playerSelection, computerSelection) {
     switch (true) {
-        case (playerSelection.toLowerCase() === computerSelection):
-            alert("It's a Tie")
-            return "It's a Tie"
+        case (playerSelection === computerSelection):
+            results.textContent = "It's a Tie"
             break;
-        case (playerSelection.toLowerCase() === "rock" && computerSelection === "scissors"):
+        case (playerSelection === "rock" && computerSelection === "scissors"):
             playerScore++
             playerS.textContent = playerScore
-            alert("You win! Rock beats Scissors")
-            return "You win! Rock beats Scissors"
+            results.textContent = "You win! Rock beats Scissors"
             break;
-        case (playerSelection.toLowerCase() === "paper" && computerSelection === "rock"):
+        case (playerSelection === "paper" && computerSelection === "rock"):
             playerScore++
             playerS.textContent = playerScore
-            alert("You win! Paper beats Rock")
-            return "You win! Paper beats Rock"            
+            results.textContent = "You win! Paper beats Rock"        
             break;
-        case (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper"):
+        case (playerSelection === "scissors" && computerSelection === "paper"):
             playerScore++
             playerS.textContent = playerScore
-            alert("You win! Scissors beat Paper")
-            return "You win! Scissors beat Paper"            
+            results.textContent = "You win! Scissors beat Paper"         
             break;
-        case (playerSelection.toLowerCase() === "scissors" && computerSelection === "rock"):
+        case (playerSelection === "scissors" && computerSelection === "rock"):
             pcScore++
             pcS.textContent = pcScore
-            alert("You lose! Rock beats Scissors")
-            return "You lose! Rock beats Scissors"            
+            results.textContent = "You lose! Rock beats Scissors"         
             break;
-        case (playerSelection.toLowerCase() === "rock" && computerSelection === "paper"):
+        case (playerSelection === "rock" && computerSelection === "paper"):
             pcScore++
             pcS.textContent = pcScore
-            alert("You lose! Paper beats Rock")
-            return "You lose! Paper beats Rock"            
+            results.textContent = "You lose! Paper beats Rock"          
             break;
-        case (playerSelection.toLowerCase() === "paper" && computerSelection === "scissors"):
+        case (playerSelection === "paper" && computerSelection === "scissors"):
             pcScore++
             pcS.textContent = pcScore
-            alert("You lose! Scissors beat Paper")
-            return "You lose! Scissors beat Paper"            
+            results.textContent = "You lose! Scissors beat Paper"          
             break;
     }
 }
-function game() {
-    playerScore = 0
-    pcScore = 0
-    for (i = 0; i < 5; i++) {
-        playRound(prompt("Choose: rock, paper or scissors?"), computerPlay())
-    }
-    result()
-}
-function result() {
-    if (playerScore == pcScore) {
-        alert("Tie. Nobody wins.")
-    } else if (playerScore > pcScore) {
-        alert("You won! Congrats!")
-    } else {
-        alert("PC won. Try again.")
-    }
+function game(choice) {
+    playRound(choice, computerPlay())
 }
